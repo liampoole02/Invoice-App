@@ -3,21 +3,21 @@ import { useHistory } from "react-router-dom";
 const API_BASE = "https://nanoapi.nanosoft.co.za";
 const API_KEY = "123987";
 
-function Product() {
-  const [productData, setProductdata] = useState([]);
+function Customer() {
+  const [customerData, setCustomerdata] = useState([]);
 
   const history = useHistory();
 
   useEffect(() => {
-    getProducts();
+    getCustomer();
   }, []);
 
-  async function getProducts() {
-    let response = await fetch(`${API_BASE}/product`, {
+  async function getCustomer() {
+    let response = await fetch(`${API_BASE}/customer`, {
       headers: { "x-api-key": API_KEY },
     });
     let data = await response.json();
-    setProductdata(data);
+    setCustomerdata(data);
   }
 
   function getClassName(item) {
@@ -28,13 +28,11 @@ function Product() {
     return (
       <tr
         key={key}
-        onClick={() => history.push(`/product/${item._id}`)}
+        onClick={() => history.push(`/customer/${item._id}`)}
         className={getClassName(item)}
       >
         <td>{item.name}</td>
-        <td>{item.sn}</td>
-        <td className="text-end">{item.unit_price}</td>
-        <td className="text-end">{item.stock_level}</td>
+        <td>{item.contact_email}</td>
       </tr>
     )
   }
@@ -44,20 +42,18 @@ function Product() {
       <div className="col-md-12 p-3">
         <div className="card">
           <div className="card-header">
-            <div className="lead"> Product List </div>{" "}
+            <div className="lead"> Customer List </div>{" "}
           </div>{" "}
           <div className="card-body">
             <table className="table table-bordered table-hover table-striped">
               <thead>
                 <tr className="bg-dark text-white">
                   <th className="text-center"> Name </th>
-                  <th className="text-center"> Serial Number </th>
-                  <th className="text-center"> Unit Price </th>
-                  <th className="text-center"> Stock Level </th>
+                  <th className="text-center"> Contact Email </th>
                 </tr>{" "}
               </thead>{" "}
               <tbody>
-                {productData
+                {customerData
                   .sort((a, b) => a.name.localeCompare(b.name))
                   .map(renderTableRow)}
               </tbody>
@@ -69,4 +65,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default Customer;

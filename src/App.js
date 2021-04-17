@@ -3,7 +3,7 @@ import SideNav from './components/sidenav';
 import Dashboard from './pages/dashboard';
 import Invoice from './pages/invoice';
 import Customer from './pages/customer';
-import Product from './pages/product/product_list';
+import Product from './pages/product';
 import { Redirect, Route, Switch, BrowserRouter } from 'react-router-dom';
 
 function App() {

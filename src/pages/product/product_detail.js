@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {useHistory, useParams} from "react-router";
 const API_BASE="https://nanoapi.nanosoft.co.za"
 const API_KEY="123987"

@@ -21,8 +21,26 @@ export default function ProductDetail(){
     setProduct(data)
   }
 
-  function save(){
+  function save() {
     console.log(product);
+
+    let _id = params.productId;
+
+    fetch(`${API_BASE}/product/${_id}`, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.warn(resp);
+        getProduct();
+      });
+    });
+    history.goBack();
+
   }
 
   function cancel(){
